@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Malpeza.Solid.Demo.OCP.Collectors;
+using Malpeza.Solid.Demo.OCP.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,7 +12,7 @@ namespace Malpeza.Solid.Demo.OCP
         private readonly bool removeEntriesWithBadWords;
 
         private readonly IEnumerable<String> badWords 
-                = (new List<String> { "nestedLoops", "deadCode", "10levelNestedLoops" })
+                = (new List<String> { "nestedLoops", "deadCode", "copy-n-paste" })
                     .Select(word => word.ToLowerInvariant()).ToList();
 
         public DirtySocialNetworksHub()
@@ -42,6 +44,11 @@ namespace Malpeza.Solid.Demo.OCP
             }
 
             return entries.OrderBy(entry => entry.Date).Reverse();
+        }
+
+        public void AddFilter(EntriesFilter filter)
+        {
+            throw new NotImplementedException();
         }
     }
 }

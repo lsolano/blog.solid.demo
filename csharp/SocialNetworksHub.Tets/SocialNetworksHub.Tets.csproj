@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CleanSocialNetworksHubTests.cs" />
     <Compile Include="Mocks\EmptySourcePullCollector.cs" />
     <Compile Include="Mocks\ReturnAllPullCollector.cs" />
     <Compile Include="DirtySocialNetworksHubTests.cs" />

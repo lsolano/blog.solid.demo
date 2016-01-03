@@ -1,4 +1,5 @@
 ﻿using Malpeza.Solid.Demo.OCP.Collectors;
+using Malpeza.Solid.Demo.OCP.Filters;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -7,12 +8,12 @@ using System.Linq;
 namespace Malpeza.Solid.Demo.OCP.Tests
 {
     [TestFixture]
-    public class DirtySocialNetworksHubTests
+    public class CleanSocialNetworksHubTests
     {
         [Test]
         public void Test_Empty_Sources()
         {
-            SocialNetworksHub hub = new DirtySocialNetworksHub();
+            SocialNetworksHub hub = new CleanSocialNetworksHub();
 
             SocialNetworkPullCollector twCollector = new EmptySourcePullCollector();
             SocialNetworkPullCollector fbCollector = new EmptySourcePullCollector();
@@ -28,7 +29,7 @@ namespace Malpeza.Solid.Demo.OCP.Tests
         [Test]
         public void Test_Entries_Are_In_Date_Order()
         {
-            SocialNetworksHub hub = new DirtySocialNetworksHub();
+            SocialNetworksHub hub = new CleanSocialNetworksHub();
             var peter = new Contact("Peter");
             var jhon = new Contact("John");
             var mary = new Contact("Mary");
@@ -62,7 +63,7 @@ namespace Malpeza.Solid.Demo.OCP.Tests
         [Test]
         public void Test_Filter_Entries_With_Bad_Words()
         {
-            SocialNetworksHub hub = new DirtySocialNetworksHub(true);
+            
             var peter = new Contact("Peter");
             var jhon = new Contact("John");
             var mary = new Contact("Mary");
@@ -86,7 +87,11 @@ namespace Malpeza.Solid.Demo.OCP.Tests
             };
 
             SocialNetworkPullCollector returnAllCollector = new ReturnAllPullCollector(entries);
+            EntriesFilter filter = new BadWordsFilter("nestedLoops,deadCode,copy-n-paste".Split(','));
+
+            SocialNetworksHub hub = new CleanSocialNetworksHub();
             hub.AddCollector(returnAllCollector);
+            hub.AddFilter(filter);
 
             DateTime since = DateTime.Now.AddHours(-4);
             IEnumerable<Entry> hubEntries = hub.GetEntriesSince(since);

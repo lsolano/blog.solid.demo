@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Malpeza.Solid.Demo.OCP.Collectors;
+using Malpeza.Solid.Demo.OCP.Filters;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Malpeza.Solid.Demo.OCP
 {
@@ -10,6 +10,8 @@ namespace Malpeza.Solid.Demo.OCP
     {
 
         void AddCollector(SocialNetworkPullCollector twCollector);
+
+        void AddFilter(EntriesFilter filter);
 
         IEnumerable<Entry> GetEntriesSince(DateTime since);
     }

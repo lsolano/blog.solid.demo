@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Malpeza.Solid.Demo.OCP
+namespace Malpeza.Solid.Demo.OCP.Collectors
 {
     public class FacebookPullCollector : SocialNetworkPullCollector
     {

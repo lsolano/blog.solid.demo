@@ -5,14 +5,16 @@ namespace Malpeza.Solid.Demo.OCP
 {
     public class Entry
     {
+        private readonly string hash;
         private readonly string text;
         private readonly Contact author;
         private readonly DateTime date;
         private readonly IEnumerable<String> tags;
         private readonly SocialNetwork source;
 
-        public Entry(string text, Contact author, DateTime date, IEnumerable<String> tags, SocialNetwork source)
+        public Entry(string hash, string text, Contact author, DateTime date, IEnumerable<String> tags, SocialNetwork source)
         {
+            this.hash = hash;
             this.text = text;
             this.author = author;
             this.date = date;
@@ -20,6 +22,7 @@ namespace Malpeza.Solid.Demo.OCP
             this.source = source;
         }
 
+        public string Hash { get { return this.hash; } }
         public string Text { get { return this.text; } }
         public Contact Author { get { return this.author; } }
         public DateTime Date { get { return this.date; } }
