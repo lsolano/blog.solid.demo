@@ -13,7 +13,7 @@ To explain the SOLID Principles, from Object-oriented design, using code samples
 These code sample are support files for [Tales Of Agile Adoption](http://tales-of-agile-adoption.blogspot.com "Blog home"), SOLID explanations:
 
 - [SOLID Principles: SRP and DIP (1 of 4)](http://tales-of-agile-adoption.blogspot.com/2015/12/solid-principles-srp-and-dip-1-of-4.html "SOLID Principles: SRP and DIP (1 of 4)")
-- SOLID Principles: OCP (2 of 4)
+- [SOLID Principles: OCP (2 of 4)](http://tales-of-agile-adoption.blogspot.com/2016/01/solid-principles-ocp-2-of-4.html "SOLID Principles: OCP (2 of 4)")
 - SOLID Principles: LSP (3 of 4)
 - SOLID Principles: ISP (4 of 4)
 
