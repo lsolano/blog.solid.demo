@@ -1,0 +1,11 @@
+{
+  "name": "js",
+  "version": "0.0.1",
+  "description": "'SOLID Principles explanation: LSP'",
+  "main": "LogDemo.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Lorenzo Solano Martínez",
+  "license": "MIT"
+}
