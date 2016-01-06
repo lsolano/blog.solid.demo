@@ -18,3 +18,4 @@ csharp/SocialNetworksHub.Tets/obj/
 csharp/SocialNetworksHub/packages/
 csharp/docs/*.png
 js/docs/*.png
+js/docs/*.vpp~*
