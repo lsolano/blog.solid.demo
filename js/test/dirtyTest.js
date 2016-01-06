@@ -1,117 +1,100 @@
 var assert = require('assert'),
-	SOLIDLogs = require('../SOLIDLogs');
+	SOLIDLogs = require('../SOLIDLogs'),
+	mocks = require('./mocks'),
+	ConsoleMock = mocks.ConsoleMock,
+	DBMSRepoMock = mocks.DBMSRepoMock;
 
-function ConsoleMock() {
-	this.messages = [];
-}
-
-ConsoleMock.prototype.debug = function(message) {
-	this.messages.push({ category: "Debug", text: message });
-};
-ConsoleMock.prototype.error = function(message) {
-	this.messages.push({ category: "Error", text: message });
-};
-
-function DBMSRepoMock() {
-	this.messages = [];
-}
-
-DBMSRepoMock.prototype.persist = function(message) {
-	this.messages.push({ category: message.category, text: message.text });
-};
-
-describe('ConsoleAppender', function() {
+describe('Dirty::ConsoleAppender', function() {
   describe('#append', function () {
   	var logger = SOLIDLogs.getLogger(),
   		mock = new ConsoleMock(),
-  		consoleAppender = SOLIDLogs.getDirtyConsoleAppender(mock);
+  		appender = SOLIDLogs.getDirtyConsoleAppender(mock);
   	
-  	logger.addAppender(consoleAppender);
+  	logger.addAppender(appender);
 
     it('should output to the console debug method', function () {
       var message = "Hello World!";
       logger.debug(message);
-      assert.equal(1, mock.messages.length);
-      assert.equal(message, mock.messages[0].text);
+      assert.equal(mock.messages.length, 1);
+      assert.equal(mock.messages[0].text, message);
     });
 
     it('should output to the console error method', function () {
       var message = "The world is on fire!!!";
       logger.error(message);
-      assert.equal(2, mock.messages.length);
-      assert.equal(message, mock.messages[1].text);
+      assert.equal(mock.messages.length, 2);
+      assert.equal(mock.messages[1].text, message);
     });
   });
 });
 
-describe('MySQLAppender', function() {
+describe('Dirty::MySQLAppender', function() {
   describe('#append', function () {
   	var logger = SOLIDLogs.getLogger(),
   		mock = new DBMSRepoMock(),
-  		consoleAppender = SOLIDLogs.getDirtyMySQLAppender(mock);
+  		appender = SOLIDLogs.getDirtyMySQLAppender(mock);
   	
-  	logger.addAppender(consoleAppender);
+  	logger.addAppender(appender);
 
     it('should output to the console debug method', function () {
       var message = "Hello World!";
       logger.debug(message);
-      assert.equal(1, mock.messages.length);
-      assert.equal(message, mock.messages[0].text);
+      assert.equal(mock.messages.length, 1);
+      assert.equal(mock.messages[0].text, message);
     });
 
     it('should output to the console error method', function () {
       var message = "The world is on fire!!!";
       logger.error(message);
-      assert.equal(2, mock.messages.length);
-      assert.equal(message, mock.messages[1].text);
+      assert.equal(mock.messages.length, 2);
+      assert.equal(mock.messages[1].text, message);
     });
   });
 });
 
-describe('ConsoleAppender(maxLength=10)', function() {
+describe('Dirty::ConsoleAppender(maxLength=10)', function() {
   describe('#append', function () {
   	var logger = SOLIDLogs.getLogger(),
   		mock = new ConsoleMock(),
-  		consoleAppender = SOLIDLogs.getDirtyConsoleAppender(mock, 10);
+  		appender = SOLIDLogs.getDirtyConsoleAppender(mock, 10);
   	
-  	logger.addAppender(consoleAppender);
+  	logger.addAppender(appender);
 
+    var message = "01234567890";
     it('should output to the console debug method up to maxLength', function () {
-      var message = "01234567890";
+      
       logger.debug(message);
-      assert.equal(1, mock.messages.length);
-      assert.equal("0123456789", mock.messages[0].text);
+      assert.equal(mock.messages.length, 1);
+      assert.equal(mock.messages[0].text, "0123456789");
     });
 
     it('should output to the console error method up to maxLength', function () {
-      var message = "01234567890";
       logger.error(message);
-      assert.equal(2, mock.messages.length);
-      assert.equal("0123456789", mock.messages[1].text);
+      assert.equal(mock.messages.length, 2);
+      assert.equal(mock.messages[1].text, "0123456789");
     });
   });
 });
 
-describe('MySQLAppender(maxLength=10)', function() {
+describe('Dirty::MySQLAppender(maxLength=10)', function() {
   describe('#append', function () {
   	var logger = SOLIDLogs.getLogger(),
   		mock = new DBMSRepoMock(),
-  		consoleAppender = SOLIDLogs.getDirtyMySQLAppender(mock, 10);
+  		appender = SOLIDLogs.getDirtyMySQLAppender(mock, 10);
   	
-  	logger.addAppender(consoleAppender);
+  	logger.addAppender(appender);
 
+    var message = "01234567890";
     it('should output to the console debug method up to maxLength', function () {
-      var message = "01234567890";
       logger.debug(message);
-      assert.equal(1, mock.messages.length);
-      assert.equal("0123456789", mock.messages[0].text);
+      assert.equal(mock.messages.length, 1);
+      assert.equal(mock.messages[0].text, "0123456789");
     });
 
     it('should output to the console error method up to maxLength', function () {
-      var message = "01234567890";
       logger.error(message);
-      assert.equal(2, mock.messages.length);
-      assert.equal("0123456789", mock.messages[1].text);
+      assert.equal(mock.messages.length, 2);
+      assert.equal(mock.messages[1].text, "0123456789");
     });
   });
 });
