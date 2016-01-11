@@ -19,3 +19,9 @@ csharp/SocialNetworksHub/packages/
 csharp/docs/*.png
 js/docs/*.png
 js/docs/*.vpp~*
+scala/target/
+scala/project/target/
+scala/docs/*.vpp~*
+scala/docs/*.png
+scala/.cache-tests
+scala/.cache-main

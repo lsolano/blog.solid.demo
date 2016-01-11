@@ -1,6 +1,6 @@
 /**
  * <p>
- * <strong>Single responsibility principle:</strong> a class should have only a single responsibility (i.e. only one
+ * <strong>Single responsibility principle:</strong> "a class should have only a single responsibility (i.e. only one
  * potential change in the software's specification should be able to affect the specification of the class)."
  * </p>
  * <p>
