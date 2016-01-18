@@ -7,6 +7,12 @@ import com.malpeza.solid.isp.entities.WithdrawalService
 class WithdrawalSpec extends FlatSpec {
   behavior of "Cash withdrawal"
 
+  it should "not work without dependencies" in {
+    intercept[IllegalArgumentException] {
+      Withdrawal(null)
+    }
+  }
+  
   it should "allow Withdraw if customer has balance" in {
     val pin = "1234"
     val withdrawSrv = WithdrawalService(Map(pin -> 100.0))

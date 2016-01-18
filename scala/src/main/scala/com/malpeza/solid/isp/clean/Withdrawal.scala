@@ -7,6 +7,8 @@ import com.malpeza.solid.isp.TransactionResponse
 import com.malpeza.solid.isp.WithdrawalRequest
 
 class Withdrawal(withdrawalService: WithdrawalService) {
+  require (withdrawalService != null)
+  
   def withdrawal(request: WithdrawalRequest): TransactionResponse = {
     val response = withdrawalService.withdrawal(com.malpeza.solid.isp.model.Withdrawal(request.pin, request.amount))
     val failReason = response.reason match {

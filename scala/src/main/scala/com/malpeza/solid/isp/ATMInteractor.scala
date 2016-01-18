@@ -21,7 +21,7 @@ class ATMInteractor(securityService: SecurityService, withdrawalService: Withdra
     val response = withdrawalService.withdrawal(com.malpeza.solid.isp.model.Withdrawal(request.pin, request.amount))
     val failReason = response.reason match {
       case Some(r) => r match {
-        case com.malpeza.solid.isp.model.InsufficientBalance => InsufficientBalance
+        case model.InsufficientBalance => InsufficientBalance
         case _ => CallBank
       }
       case _ => CallBank
@@ -29,6 +29,8 @@ class ATMInteractor(securityService: SecurityService, withdrawalService: Withdra
 
     TransactionResponse(response.done, Option(failReason))
   }
+  
+  def deposit(request: AnyRef) = ???
 }
 
 object ATMInteractor {

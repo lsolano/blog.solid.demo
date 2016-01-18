@@ -8,6 +8,12 @@ import com.malpeza.solid.isp.clean.CustomerValidation
 class CustomerValidationSpec extends FlatSpec {
   behavior of "Validating a Customer"
 
+  it should "not work without dependencies" in {
+    intercept[IllegalArgumentException] {
+      CustomerValidation(null)
+    }
+  }
+
   it should "validate Customer if found on repository" in {
     val pin = "1234"
 
